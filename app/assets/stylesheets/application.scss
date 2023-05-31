@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import "config/fonts";
+@import "config/colors";
+@import "config/bootstrap_variables";
+@import "reviews.scss";
+@import "home.scss";
+@import "restaurants.scss";
+@import "font-awesome";
+// @import "users.scss";
+// External libraries
+@import "bootstrap/scss/bootstrap";
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root{
+  --main-color: #f0b30f;
+}
+
+.theme-text{
+  color: var(--main-color);
+}
+
+.navbar-brand{
+  color: var(--main-color)!important;
+}
+
+.act{
+  color: var(--main-color)!important;
+  border-bottom: 2px solid var(--main-color);
+}
+
+.navbar ul li a:hover{
+  color: var(--main-color)!important;
+  border-bottom: 1px solid var(--main-color);
+}
+
+.header{
+  
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url("/assets/davide-cantelli-jpkfc5_d-DI-unsplash.jpg");
+  width: 100%;
+  height: 60vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.wave{
+  position: absolute;
+  bottom: 0px;
+}
+
+/* ------------------------------------Easy Sortable Lists with Rails-------------------*/
+
+.ui-sortable-handle{
+  cursor: pointer;
+}
+

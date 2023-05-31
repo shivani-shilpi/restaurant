@@ -1,0 +1,34 @@
+
+<br>
+<br>
+              
+<div class="container-md" >
+    <div class="row row-cols-1 row-cols-md-4 g-4  hover01 column">
+        <% @restaurants.each do |restaurant| %>   
+          <figure> 
+          
+            <div class="col" style="height: 30%;">
+                <div class="card shadow rounded">
+                    <% if restaurant.image.attached? %>  
+                        <%= link_to restaurant_path(restaurant), class: "text-decoration-none text-reset" do %>
+                          <%= image_tag restaurant.image, height: "150px", class: "card-img-top image" %> 
+                        <% end %>   
+                    <% end %>  
+            
+                    <div class="card-body overlay">
+                        <h5 class="card-title text fw-bold"><%= restaurant.name %></h5>
+                        <p class="card-text text "><small class="text-muted"><%= restaurant.full_address %></small></p>
+                      
+                        <%= restaurant.reviews.average(:rating) do %>
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>           
+                        <% end %>
+                       
+                    </div>
+                </div>  
+            </div>
+       
+          </figure> 
+        <% end %>   
+    </div>
+</div>  
+

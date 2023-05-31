@@ -1,0 +1,29 @@
+<div class="modal-body">
+  <%= form_for [ @restaurant, @restaurant.reviews.build], remote: true do |f| %>
+    
+    <div class="mb-3">    
+      <%= f.label :Title, class: "col-form-label"%><br>
+      <%= f.text_field :title , class: "form-control", id: "recipient-name" %> 
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :Description, class: "col-form-label" %><br>
+      <%= f.text_area :description, class: "form-control", id: "message-text" %>     
+    </div>
+    
+    <div class="mb-3">
+      <%= f.label :Rating, class: "col-form-label" %><br>
+      <div class="rate">       
+        <%= f.collection_radio_buttons :rating, [[5], [4], [3], [2], [1]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
+          <%= b.radio_button + b.label {''} %>
+        <% end %>
+      </div>
+    </div> 
+  
+    <div class="modal-footer">
+      <%= f.submit "save", class: "btn btn-primary" %>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+ 
+  <% end %>  
+</div>

@@ -1,0 +1,27 @@
+      
+   <div id="sortable1">
+    <% @restaurants.each do |restaurant| %> 
+        <div id="restaurantForm_<%= restaurant.id %>">
+            <%= render "restaurant", restaurant: restaurant %>
+        </div>  
+    <% end %> 
+   </div>
+    
+   
+    <script>
+        $("#sortable1").sortable({
+        stop: function(e, ui) {
+            debugger
+            $.ajax({
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            url: $(this).data('restaurants/rest_sortable(@restaurant)'),
+            type: 'post',
+            format: 'js'
+          })
+            }
+        });
+    </script>
+
+
+
+  

@@ -1,0 +1,68 @@
+ <section class="header">
+     <div class="container-fluid">
+          
+        <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+       
+          <a class="navbar-brand" href="#">MyRestaurant</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link act" aria-current="page" href="/">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Restaurant", restaurants_path, class: "nav-link" %>
+              </li>
+
+              <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.email %>    
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   <% if current_user.has_role? :owner %>
+                      <%= link_to "Add Restaurant", new_restaurant_path, class: "text-decoration-none text-reset dropdown-item", remote: true %>
+                      <% if current_user.stripe_id.nil? %>
+                        <%= link_to "Subscription", add_payment_method_path, remote: true, class: "dropdown-item" %>
+                      <% end %>
+                    <% end %>
+                    <%= link_to "log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                </ul>
+              </li>
+              <% else %>
+                  <%= link_to "Sign up", new_registration_path(resource_name), class: "nav-link" %><br />
+                  <%= link_to "Log in", new_session_path(resource_name), class: "nav-link" %><br />
+              <% end %>    
+            </ul>    
+          </div>
+        </div>
+      </nav>
+
+      <br/>
+      <br/>            
+       <div class="middle d-flex justify-content-center mt-5">
+          <h1 class="text-white fw-bold">Shine</h1>
+       </div>
+        <p class="text-white middleText d-flex justify-content-center ">Welcome to<span class="theme-text"> The Shine</span></p> 
+        <% if controller_name == "home" && action_name == "index"  %>
+          <div class="d-flex justify-content-center search">     
+            <%= form_tag(search_restaurants_path, method: :get, class: "d-flex", role: "search", type: "text") do %>
+        
+             <%= text_field_tag(:search, params[:search], class: "form-control me-2", id: "searchForm" , placeholder: "Search for restaurant, dish, or cuisine" ) %>
+           
+              <i class="fa-solid fa-magnifying-glass fa-2x me-2" id="searchBar"></i>  
+        
+              <%= submit_tag "search", class: "btn btn-dark btn-lg" %>   
+                
+            <% end %> 
+          </div>
+        <% end %>   
+     </div>
+   
+  </section>
+  
+                     

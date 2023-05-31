@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  interval: 2022-06-30 12:38:56
+  amount: MyString
+
+two:
+  name: MyString
+  interval: 2022-06-30 12:38:56
+  amount: MyString

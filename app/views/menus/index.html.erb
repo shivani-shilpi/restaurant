@@ -1,0 +1,23 @@
+
+
+<br>
+<br>
+
+<div class="container-md " >
+    <div class="row">
+        <div class="col-12">
+          <%= link_to "New Menu", new_restaurant_menu_path, class: "btn btn-outline-primary " %>
+          <br/>
+          <br/>
+        </div>
+
+        <div class="col-8 ", id="newRestaurant">  
+          <%= render "index", menus: @menus %>   
+        </div>
+    </div>
+</div>
+
+
+
+
+

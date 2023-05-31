@@ -1,0 +1,2 @@
+module RestaurantImageHelper
+end

@@ -1,0 +1,63 @@
+<div class= "mb-3 shadow">
+<%= form_for @restaurant, remote: true do |f| %>
+<div class="border p-4">
+    <div class="mb-3">
+      <%= f.label :logo,class: "form-label" %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :name, class: "form-label"%>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :description, class: "form-label"%>
+      <%= f.text_field :description, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :contact, class: "form-label" %>
+      <%= f.text_field :contact, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">                     
+      <%= f.hidden_field :latitude, class: 'form-control', data: { maps_target: "latitude" }%>
+    </div>
+
+    <div class="mb-3">              
+      <%= f.hidden_field  :longitude, class: 'form-control', data: { maps_target: "longitude" } %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.label :category %>
+        <%= f.select :category_ids, Category.pluck(:name, :id), { :prompt => "Please select"}, class: 'form-control', multiple: true %> 
+    </div>
+  
+    <div class="mb-3">
+      <%= f.label :full_address, class: "form-label" %>
+      <%= f.text_field :full_address, class: "form-control" %>
+    </div>
+
+   <div class="mb-3">   
+     <%= f.label :Photo, class: "form-label" %>
+     <%= f.file_field :images, multiple: true ,class: "form-control" %> 
+   </div>  
+
+
+   <div class="mb-3">   
+     <%= f.label :Video, class: "form-label" %>
+     <%= f.file_field :clips, multiple: true, class: "form-control" %> 
+   </div> 
+
+    <div class="actions" >
+      <%= f.submit "submit", class: "btn btn-outline-dark "  %>
+    </div>
+</div>
+<% end %>
+</div>

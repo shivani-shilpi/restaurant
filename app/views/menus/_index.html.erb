@@ -1,0 +1,51 @@
+
+<div id="sortable1">
+    <% @restaurant.menus.each do |menu| %>   
+        <div class="card mb-3 rounded shadow p-2" style="max-width: 540px;">
+            <div class="row justify-content-center">
+                <div class="col-2 mt-2">
+                    <% menu.pictures.first(1).each do |picture| %>              
+                        <% if menu.pictures.attached? %>             
+                            <%= image_tag(url_for(picture), height: '80px', width: '80px', class: "card-img-top image" ) %> 
+                        <% else %>
+                            <%= image_tag "karly-gomez-lK1Q5RyD6tc-unsplash.jpg", height: "150px", class: "card-img-top image" %>
+                        <% end %>  
+                    <% end %>  
+                </div> 
+                    
+                <div class="col-6">
+                    <div class="card-body">
+                    <h5 class="card-title text fw-bold"><%= menu.title %></h5>
+                    <p class="card-text text "><small class="text-muted"><%= menu.description %></small></p> 
+                    <p class="card-text text"><%= menu.pricing %></p>
+                    </div>          
+                </div>
+                
+
+                <div class="col mt-2">
+                    <div class="card-body">
+                    <%= link_to restaurant_menu_path(@restaurant, menu.id), class: "btn btn-outline-danger mt-4", data: { confirm: "Are you sure "} do %>
+                        <i class="fa-solid fa-trash"></i>
+                    <% end %>
+                    
+                    <%= link_to edit_restaurant_menu_path(@restaurant, menu.id), class: "btn btn-outline-info mt-4" do %>
+                        <i class="fa-solid fa-file-pen"></i> 
+                    <% end %> 
+                    </div>
+                </div>  
+            </div>
+        </div>
+    <% end %>  
+</div>
+
+  <script> 
+    $("#sortable1").sortable({
+        stop: function(e, ui) {
+                $.ajax({
+                url: $(this).data("url"),
+                type: "PATCH",
+                data: $(this).sortable('serialize'),
+            });
+        }
+    });
+   </script>       

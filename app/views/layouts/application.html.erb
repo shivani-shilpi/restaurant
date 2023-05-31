@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyRestaurant</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+
+     <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiHu2NfKlUSaE0-nluvepwIg5TpBdT-8c &callback=initMap&v=weekly"
+    defer
+    ></script>
+    
+     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+  </head>
+
+  <body> 
+    <% if controller_name == "restaurants" && action_name == "show" || action_name == "search" || action_name == "google_map" %>
+
+    <% else %>
+      <%= render "shared/header" %>
+    <% end %> 
+
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-info">
+        <%= msg %>
+      </div>
+    <% end %> 
+
+    <%= yield %>
+    <%= render "shared/footer" %>
+  </body>
+
+
+</html>

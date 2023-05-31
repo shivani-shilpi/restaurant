@@ -1,0 +1,2 @@
+module RestaurantVideoHelper
+end

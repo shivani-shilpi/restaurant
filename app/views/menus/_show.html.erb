@@ -1,0 +1,38 @@
+
+<br>
+<br>
+
+<div class="modal-body">
+  <div class="container">      
+    <div class="col-4">
+      <% @restaurant.menus.each do |menu| %>   
+        <figure>    
+          <% menu.pictures.each do |picture| %>              
+            <div class="card shadow rounded mb-3" style="width: 50rem;">
+              <% if menu.pictures.attached? %>             
+                  <%= image_tag(url_for(picture), height: "250px", class: "card-img-top image" ) %> 
+              <% else %>
+                  <%= image_tag "karly-gomez-lK1Q5RyD6tc-unsplash.jpg", height: "150px", class: "card-img-top image" %>
+              <% end %>  
+            
+              <div class="card-body overlay">
+                <h5 class="card-title text fw-bold"><%= menu.title %></h5>
+                <p class="card-text text "><small class="text-muted"><%= menu.description %></small></p> 
+                <p class="card-text text"><%= menu.pricing %></p>
+    
+              </div>
+            </div>
+          <% end %>    
+        </figure> 
+      <% end %>   
+    </div>
+  </div>
+</div>
+
+
+
+
+
+                           
+                 
+               

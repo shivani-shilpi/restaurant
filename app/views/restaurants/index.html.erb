@@ -1,0 +1,29 @@
+<br>
+<br>
+
+<div class="container-md" >
+    <div class="row">
+        <div class="col-4">
+            <% if current_user.has_role? :owner %>
+                <div class="card shadow " style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span class="fas fa-edit orange"></span> &nbsp;</i><%= link_to "Add Restaurant", new_restaurant_path, class: "text-decoration-none text-reset fw-bold", remote: true %></li>
+                         <% if current_user.stripe_id.nil? %>
+                            <li class="list-group-item">
+                                <span class="fas fa-dollar-sign orange"></span> &nbsp;<%= link_to "Subscription", add_payment_method_path, remote: true, class: "text-decoration-none text-reset fw-bold" %></i>
+                            </li>
+                         <% end %>
+                        <li class="list-group-item">Reset Passsword</li>
+                        <li class="list-group-item">My Profile</li>
+                        <li class="list-group-item"><span class="fas fa-sign-out-alt orange"></span> &nbsp;<%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "text-decoration-none text-reset fw-bold" %></i></li>
+                    </ul>
+                </div>
+            <% end %>
+        </div>
+        
+        <div class="col-8 ", id="newRestaurant">
+            <%= render "index", restaurants: @restaurants %>   
+        </div>
+    </div>
+</div>
+

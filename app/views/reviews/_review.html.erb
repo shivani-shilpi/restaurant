@@ -1,0 +1,35 @@
+    <% @restaurant.reviews.each do |review|%>
+        <div id="reviewForm_<%= review.id %>">
+          <% if review.title.present? %>
+          <div class="mb-3 " style="width: 18rem";>
+              <div class="row">
+              <div class="col-3">
+              <% if @restaurant.image.attached? %>
+                    <%= image_tag @restaurant.image, height: '40px', width: '40px', class: "rounded-circle" %>
+                  <% else %>
+                      <img src="..." class="img-fluid rounded-start" alt="...">
+                  <% end %>  
+              </div>
+              <div class="col-8">
+                  <h4 class="name"><%= current_user.fullname %></h4>
+                  <h5 class="card-title text-muted"><%= review.title %></h5>
+                  <p class="card-text text-muted "> <%= review.description %></p>
+                  <% review.rating.to_i.times do %>
+                    
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>           
+                  <% end %>
+                  <% if review.user_id == current_user.id %> 
+                    <%= link_to restaurant_review_path(@restaurant.id, review.id), :method => :delete, remote: true, data: { confirm: 'Are you sure?' } do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                    <% end %>
+                  <br>  
+                  <% end %> 
+          
+              </div>
+              </div>
+          </div>
+          
+          <% end %>
+              <hr>
+      </div>
+    <% end %> 
